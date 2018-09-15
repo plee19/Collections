@@ -1,7 +1,12 @@
-package us.mattgreen;
+package us.plee19;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
 
 public class Main {
 //LIST TOP TEN MOST USED WORDS
@@ -35,10 +40,30 @@ public class Main {
 
             }
 
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+        }
+
+        System.out.println("Words used only once:");
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            // Print the words used only once
+            if (entry.getValue() == 1) {
+                System.out.println(entry.getKey());
+            }
+
+        }
+
+        Map<String, Integer> sorted = map.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+
+        System.out.println("\nTop 20 words: ");
+        int i = 0;
+        for (Map.Entry<String, Integer> entry : sorted.entrySet()) {
+            // Counts first 20, ignoring the empty space with value of 3241
+            if (i < 20 && entry.getValue() != 3241) {
                 System.out.println(entry.getKey() + " " + entry.getValue());
+                i++;
             }
         }
+
     }
     
 }
