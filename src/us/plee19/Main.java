@@ -9,7 +9,7 @@ import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
 
 public class Main {
-//LIST TOP TEN MOST USED WORDS
+
     private final static FileInput indata = new FileInput("the_book.csv");
     private final static Map<String, Integer> map = new HashMap<String, Integer>();
 
