@@ -8,6 +8,11 @@ import java.util.Map;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
 
+/**
+ * Main class to demonstrate Collections and Maps.
+ * @author plee19
+ * @version 1
+ */
 public class Main {
 
     private final static FileInput indata = new FileInput("the_book.csv");
@@ -17,31 +22,31 @@ public class Main {
         String line;
         String[] words;
         Object wordFound;
-     //   String[] fields;
+        //   String[] fields;
 
+
+        //Remove punctuation from words for entry into a Map
         while ((line = indata.fileReadLine()) != null) {
-            line=line.replace(",","").replace(".","")
-                    .replace(";","").replace(":","")
-                    .replace("'","").replace("\"","")
-                    .replace("-","").replace("!","")
-                    .replace("#","").replace("(","")
-                    .replace(")","").replace("?","")
-                    .replace("_"," ").replace("?","")
+            line = line.replace(",", "").replace(".", "")
+                    .replace(";", "").replace(":", "")
+                    .replace("'", "").replace("\"", "")
+                    .replace("-", "").replace("!", "")
+                    .replace("#", "").replace("(", "")
+                    .replace(")", "").replace("?", "")
+                    .replace("_", " ").replace("?", "")
                     .toLowerCase().trim();
             words = line.split(" ");
-            for (String s:words) {
+            for (String s : words) {
                 wordFound = map.get(s);
                 if (wordFound == null) {
                     map.put(s, new Integer(1));
-                }
-                else {
+                } else {
                     map.put(s, map.get(s) + 1);
                 }
 
             }
 
         }
-
         System.out.println("Words used only once:");
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             // Print the words used only once
@@ -65,5 +70,4 @@ public class Main {
         }
 
     }
-    
 }

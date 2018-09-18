@@ -17,7 +17,7 @@ public class FileInputTest extends TestCase {
 
     @Before
     public void setUp() throws Exception {
-        inputTest = new FileInput("testFileInput.txt");
+        inputTest = new FileInput("FileInputTest.txt");
         System.setOut(new PrintStream(outStuff));
     }
 
@@ -47,6 +47,6 @@ public class FileInputTest extends TestCase {
     public void testFileInputError() {
         String noFile = "error.txt";
         new FileInput(noFile);
-        assertEquals("File Open Error: error.txt java.io.FileNotFoundException: " + noFile + " (No such file or directory)\n", outStuff.toString());
+        assertEquals("File Open Error: error.txt java.io.FileNotFoundException: " + noFile + " (The system cannot find the file specified)\n", outStuff.toString());
     }
 }
